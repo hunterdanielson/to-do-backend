@@ -26,10 +26,10 @@ async function run() {
     await Promise.all(
       quests.map(quest => {
         return client.query(`
-                    INSERT INTO quests (name, reward, owner_id)
-                    VALUES ($1, $2, $3);
+                    INSERT INTO quests (name, reward, owner_id, is_completed)
+                    VALUES ($1, $2, $3, $4);
                 `,
-        [quest.name, quest.reward, user.id]);
+        [quest.name, quest.reward, user.id, quest.is_completed]);
       })
     );
     
